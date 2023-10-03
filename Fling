@@ -1,5 +1,41 @@
+return ni--[[Fling GUI]]--
+--[[Made by ZhexRoblox for the Jeff GUI]]--
 
--Made by ZhexRoblox
+--[[v1.0.4 HOTFIX 4/21/2021]]--
+--Fixed the close button color being wrong
+--Added smooth dragging
+--Removed unused variables
+
+--[[v1.0.3 UPDATE 4/19/2021]]--
+--Updated themes to be blockify's themes
+--Removed unused / deprecated features such as qfling, theme box, etc.
+--Made fix character compatible with both rig types (it had two different versions for each type)
+--Added velocity breaking after fixing character and stopping fling
+--Added novertgain module that might help
+--Made number grabbing in the speedbox better
+--Probably some performance improvements
+
+--[[v1.0.2.3 HOTFIX 3/13/2021]]--
+--Updated fix player so the teleportation works outside of your client
+--Updated fix player to have a platform incase anchoring does not work
+--Added a suggestion for Survive the disasters
+
+--[[v1.0.2.2 HOTFIX 3/11/2021]]--
+--Fixed R15 not being compatible with fix player
+--Updated fix player to hopefully work every time + send you to a safe location while fixing
+--Added a suggestion for Build a Boat for Treasure
+
+--[[v1.0.2.1 HOTFIX 2/25/2021]]--
+--Fixed a variable issue
+--Added a few more suggestions for games
+
+--[[v1.0.2 UPDATE 2/22/2021]]--
+--Updated the themes to make them look better
+--Updated FixPlayer to work more often
+--Fixed the textlabels having a visible box when not using the jeff standard theme
+--Fixed ServerKek to not break
+--Fixed ServerKek enable text appearing after the disable text
+--Fixed the suggestiontext not displaying properly if you arent playing on a supported game
 
 
 --[[variables:]]--
@@ -253,7 +289,7 @@ CreditText.Name = "Credit Text"
 CreditText.Parent = Menu
 CreditText.Position = UDim2.new(0, 20, 0, 300)
 CreditText.Font = font
-CreditText.Text = "Made by topit"
+CreditText.Text = "Made by ZhexRoblox"
 CreditText.TextColor3 = SelectedTheme[7]
 CreditText.TextSize = 20
 CreditText.TextXAlignment = Enum.TextXAlignment.Left
@@ -281,8 +317,8 @@ Hotkey.TextColor3 = SelectedTheme[7]
 Hotkey.Position = UDim2.new(AxisPositionX[2], 0, 0, AxisPositionY[3])
 Hotkey.Size = UDim2.new(0, 100, 0, 25)
 Hotkey.Font = Enum.Font.FredokaOne
-Hotkey.Text = "Coming Soon"
-Hotkey.PlaceholderText = "Coming Soon"
+Hotkey.Text = "Enter new hotkey"
+Hotkey.PlaceholderText = "Enter new hotkey"
 Hotkey.TextScaled = true
 Hotkey.ZIndex = 300
 
@@ -354,7 +390,7 @@ ToggleServerKill.TextColor3 = SelectedTheme[7]
 ToggleServerKill.Position = UDim2.new((AxisPositionX[3]), 0, 0, (AxisPositionY[2]))
 ToggleServerKill.Size = UDim2.new(0, 100, 0, 25)
 ToggleServerKill.Font = Enum.Font.FredokaOne
-ToggleServerKill.Text = "Tp to Player"
+ToggleServerKill.Text = "Kek server"
 ToggleServerKill.TextScaled = true
 ToggleServerKill.ZIndex = 300
 
@@ -541,7 +577,7 @@ local function ServerKek()
     while Fling[4] do
         if index > playercount then
             CloseObject(ToggleServerKill)
-            DisplayText("Disabled ServerKek","Finished")
+            DisplayText("Disabled Teleport","Finished")
             Fling[4] = false
             break
         else
@@ -559,7 +595,7 @@ local function ServerKek()
                 
                 TToggleFling() --disable fling
                 
-                wait(0.30) --wait until disabled
+                wait(0.1) --wait until disabled
                 
                 if plr.Character.Humanoid:GetState() == Enum.HumanoidStateType.Seated then --check if seated
                     plr.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Running) --get out if you are
@@ -637,7 +673,7 @@ Respawn.MouseButton1Down:Connect(function()
         TToggleFling()
     end
     
-    wait(0.4) --wait for fling to stop
+    wait(0.30) --wait for fling to stop
     
     for i=0,10,1 do
         plr.Character.Humanoid:ChangeState(2) --make player recover from falling
@@ -654,11 +690,11 @@ ToggleServerKill.MouseButton1Down:Connect(function()
     Fling[4] = not Fling[4]
     if Fling[4] then
         OpenObject(ToggleServerKill)
-        DisplayText("Enabled Tp to Player","")
+        DisplayText("Enabled Teleport","")
         ServerKek()
     else
         CloseObject(ToggleServerKill)
-        DisplayText("Disabled Tp to Player","There might be a delay!")
+        DisplayText("Disabled Teleport","There might be a delay!")
     end
     
 end)
